@@ -1,0 +1,238 @@
+:root{
+  --main-radius:7px;
+  --main-padding:5px;
+  --main-min-height:10px;
+  --nav-height:30px;
+  --sidebar-height:50px;
+
+  /*Content*/
+  --content-margin:10px;
+  --content-max-width:200px;
+  --content-min-width:200px;
+
+  --content-min-height:calc(var(--content-min-width)/1.0);
+  --content-max-height:calc(var(--content-max-width)/1.0);
+
+  --image-border-width:2px;
+  /*Footer*/
+  --footer-min-height:50px;
+}
+body {
+  margin: 0;
+  padding: 0; /* Optional: Also reset padding if you want to remove any default padding */
+}
+.container{
+  display:grid;
+  height:100vh; /*vh = viewport height. 100vh means it will take the whole screen*/
+  /*min-height: 100vh; makes the page container larger so it always requires scrolling*/
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: var(--nav-height) auto auto 400px;
+
+  grid-template-areas:
+    "sidebar nav nav nav"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar footer footer footer";
+    
+  /*if there are containers that are staying too big, this may be the issue*/
+  min-height: 100px;
+  /*font stuff*/
+  font-family:"Inter", sans-serif;
+  font-weight:500;
+  font-size:12px;
+  text-align:center;
+}
+
+nav{
+  background-color: rgba(177, 178, 178, 0.386);
+  grid-area: nav;
+  /*border-radius:var(--main-radius);*/
+  padding-top:var(--main-padding);
+}
+
+#sidebar{
+  background-color: rgb(101, 85, 64);
+  background-image: url("sidebar1.jpg");
+  background-attachment: fixed;
+
+  grid-area: sidebar;
+  /*border-radius:var(--main-radius);*/
+  padding-top:var(--main-padding);
+}
+  #Profile-image{
+    --Profile-size:200px;
+    object-fit: cover;
+    width:var(--Profile-size);
+    height:var(--Profile-size);
+    border-width:0;
+    border-radius: 50%;
+    margin-bottom: 100;
+ 
+  }
+  #Profile-bio{
+    margin-bottom: 30px;
+    margin-top: 100px;
+    margin-left:20px;
+    margin-right:20px;
+    font-size: 15px;
+    max-width:400px;
+    text-align:left;
+    place-self: center;
+    color: rgb(0, 0, 0);
+  }  
+
+
+main{
+  background-color: rgba(184, 177, 119, 0.059);
+  grid-area: main;  
+}
+  #content-container1{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:var(--main-radius);
+    max-width:1200px;
+
+  }
+  #content-container2{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:var(--main-radius);
+    /*padding-top:var(--main-padding);*/
+    max-width:1200px;
+
+  }
+
+
+#title{
+  text-align: left;
+  color: rgb(0, 0, 0);
+  padding:0px;
+  margin-bottom: 0;
+  margin-top: 80px;
+  margin-left:70px;
+  margin-right:20px;
+  font-size: 35px;
+  max-width:400px;
+  text-align:left;
+  color: rgb(0, 0, 0);
+}
+h1{
+  text-align: left;
+  padding-left:70px;
+}
+h2{
+  text-align: left;
+  padding-left:70px;
+}
+h3{
+  margin:var(--main-padding);
+  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-left:20px;
+  margin-right:20px;
+  width:500px;
+
+
+  font-size: 15px;
+  text-align: left;
+  place-self: center;
+}
+
+/*Default description settings*/
+.Description{
+  margin:var(--main-padding);
+  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-left:20px;
+  margin-right:20px;
+  font-size: 15px;
+  max-width:500px;
+
+
+  font-size: 15px;
+  text-align: left;
+
+  place-self: center;
+}
+
+video{
+
+  border-style:solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius:var(--main-radius);
+}
+.image{
+  /*Default image settings*/
+  position: relative;
+  border: none;
+  border-style:solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius:var(--main-radius);
+  width:500px;
+}
+#Gravity-Simulator-image{
+  position: relative;
+  border: none;
+  border-style:solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-radius:var(--main-radius);
+  width:300px;
+}
+footer{
+  background-color: rgba(184, 177, 119, 0.059);
+  grid-area: footer;
+
+  padding-top:var(--main-padding);
+  min-height:var(--footer-min-height);
+
+}
+hr{
+  margin-bottom: 15px;
+}
+.footer-links{
+    background-color: rgba(127, 255, 212, 0);
+    margin-bottom: 0px;
+    margin-top: 0px;
+    margin-left:20px;
+    margin-right:20px;
+    font-size: 15px;
+    text-align:left;
+    padding-bottom:20px;
+    color: rgb(112, 112, 112);
+}
+
+@media only screen and (max-width: 850px){
+  .container{
+    grid-template-columns:1fr;
+    grid-template-rows: var(--nav-height) auto auto auto auto auto auto;
+    grid-template-areas:
+      "nav"
+      "sidebar"
+      "main"
+      "content1"
+      "content2"
+      "content3"
+      "footer";
+  }
+  #Profile-image{
+    --Profile-size:200px;
+    object-fit: cover;
+    width:var(--Profile-size);
+    height:var(--Profile-size);
+    border-width:0;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
+  #Profile-bio{
+    margin-bottom: 30px;
+    margin-top: 80px;
+    margin-left:20px;
+    margin-right:20px;
+    font-size: 15px;
+    max-width:500px;
+    text-align:left;
+    place-self: center;
+    color: rgb(0, 0, 0);
+  }  
+
+
+}

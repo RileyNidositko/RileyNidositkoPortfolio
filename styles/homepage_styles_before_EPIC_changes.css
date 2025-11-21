@@ -1,0 +1,237 @@
+:root{
+  --main-radius:5px;
+  --main-padding:5px;
+  --main-min-height:10px;
+  --nav-height:30px;
+  --sidebar-height:50px;
+
+  /*Content*/
+  --content-margin:10px;
+  --content-max-width:200px;
+  --content-min-width:200px;
+
+  --content-min-height:calc(var(--content-min-width)/1.0);
+  --content-max-height:calc(var(--content-max-width)/1.0);
+
+  --image-border-width:2px;
+  /*Footer*/
+  --footer-min-height:50px;
+}
+body {
+  margin: 0;
+  padding: 0; /* Optional: Also reset padding if you want to remove any default padding */
+}
+.container{
+  display:grid;
+  height:100vh; /*vh = viewport height. 100vh means it will take the whole screen*/
+  /*min-height: 100vh; makes the page container larger so it always requires scrolling*/
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  grid-template-rows: var(--nav-height) auto auto 450px;
+
+  grid-template-areas:
+    "nav nav nav nav"
+    "sidebar main main main"
+    "sidebar main main main"
+    "sidebar footer footer footer";
+    
+  /*if there are containers that are staying too big, this may be the issue*/
+  min-height: 100px;
+  /*font stuff*/
+  font-family:"Inter", sans-serif;
+  font-weight:500;
+  font-size:12px;
+  text-align:center;
+}
+
+nav{
+  background-color: rgb(177, 178, 178);
+  grid-area: nav;
+  /*border-radius:var(--main-radius);*/
+  padding-top:var(--main-padding);
+}
+
+#sidebar{
+  background-color: rgb(101, 85, 64);
+  background-image: url("temp_sidebar_image.jpg");
+  background-attachment: fixed;
+
+  grid-area: sidebar;
+  /*border-radius:var(--main-radius);*/
+  padding-top:var(--main-padding);
+}
+  #Profile-image{
+    --Profile-size:200px;
+    object-fit: cover;
+    width:var(--Profile-size);
+    height:var(--Profile-size);
+    border-width:0;
+    border-radius: 50%;
+    margin-bottom: 100;
+ 
+  }
+  #Profile-bio{
+    margin-bottom: 30;
+    margin-top: 0;
+    margin-left:20px;
+    margin-right:20px;
+    font-size: 15px;
+    max-width:400px;
+    text-align:center;
+    place-self: center;
+    color: rgb(255, 255, 255);
+  }  
+
+
+main{
+  background-color: rgba(205, 205, 205, 0);
+  grid-area: main;  
+}
+  #content-container1{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:var(--main-radius);
+    max-width:1200px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+
+
+  }
+  #content-container2{
+    background-color: rgba(0, 0, 0, 0);
+    border-radius:var(--main-radius);
+    /*padding-top:var(--main-padding);*/
+    max-width:1000px;
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+  }
+
+.content{
+  border-radius:var(--main-radius);
+  margin-top:var(--content-margin);
+  margin-bottom:var(--content-margin);
+  margin-right:30px;
+  margin-left:30px;
+  background-color: rgba(14, 62, 255, 0);
+  /*padding-top:var(--main-padding);*/
+  
+  min-height:var(--content-min-height);
+  min-width:var(--content-min-width);
+  max-width:var(--content-max-width);
+ 
+
+
+  
+}
+
+#title{
+  text-align: center;
+  color: rgba(255, 255, 255, 0);
+  padding:0px;
+}
+h1{
+  text-align: left;
+  padding-left:70px;
+}
+h2{
+  text-align: left;
+  padding-left:70px;
+}
+
+/*Default description settings*/
+.Description{
+  margin:var(--main-padding);
+  text-align: justify;
+  justify-content:left;
+}
+.image{
+  /*Default image settings*/
+  position: relative;
+  border: none;
+  border-style:solid;
+  border-color: rgba(0, 0, 0, 0);
+  border-width:var(--image-border-width);
+  width:calc(var(--content-min-height) - var(--image-border-width)*2);
+  border-radius:var(--main-radius);
+}
+.image-container {
+  position: relative;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .4s ease;
+  background-color: #8e8e8e;
+  border: none;
+  border-style:solid;
+  border-color: black;
+  border-width:var(--image-border-width);
+  width:calc(var(--content-min-height) - var(--image-border-width)*2);
+  height:calc(100% - var(--image-border-width)*2);
+  border-radius:var(--main-radius);
+}
+.image-container:hover .overlay {
+  opacity: 0.8;
+}
+.overlay-text {
+  color: rgb(255, 255, 255);
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+footer{
+  background-color: rgba(111, 76, 33, 0);
+  grid-area: footer;
+
+  padding-top:var(--main-padding);
+  min-height:var(--footer-min-height);
+}
+
+@media only screen and (max-width: 850px){
+  .container{
+    grid-template-columns:1fr;
+    grid-template-rows: var(--nav-height) auto auto auto auto auto auto;
+    grid-template-areas:
+      "nav"
+      "sidebar"
+      "main"
+      "content1"
+      "content2"
+      "content3"
+      "footer";
+  }
+  #Profile-image{
+    --Profile-size:200px;
+    object-fit: cover;
+    width:var(--Profile-size);
+    height:var(--Profile-size);
+    border-width:0;
+    border-radius: 50%;
+    margin-bottom: 30;
+    margin-top: 30;
+  }
+  #Profile-bio{
+    margin-bottom: 30;
+    margin-top: 0;
+    font-size: 20px;
+    max-width:400px;
+    text-align:center;
+    place-self: center
+  }
+
+
+}
