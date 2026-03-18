@@ -6,6 +6,7 @@
   --sidebar-height:50px;
 
   /*Content*/
+  --content-container-max-width:1200px;
   --content-margin:10px;
   --content-max-width:200px;
   --content-min-width:200px;
@@ -22,6 +23,7 @@ body {
   padding: 0; /* Optional: Also reset padding if you want to remove any default padding */
 }
 .container{
+  
   display:grid;
   height:100vh; /*vh = viewport height. 100vh means it will take the whole screen*/
   /*min-height: 100vh; makes the page container larger so it always requires scrolling*/
@@ -72,10 +74,11 @@ nav{
   #Profile-bio{
     margin-bottom: 30px;
     margin-top: 100px;
-    margin-left:20px;
-    margin-right:20px;
+    margin-left:30px;
+    margin-right:30px;
     font-size: 15px;
     max-width:400px;
+    min-width:350px;
     text-align:left;
     place-self: center;
     color: rgb(0, 0, 0);
@@ -89,7 +92,7 @@ main{
   #content-container1{
     background-color: rgba(0, 0, 0, 0);
     border-radius:var(--main-radius);
-    max-width:1200px;
+    max-width:var(--content-container-max-width);
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -99,7 +102,7 @@ main{
     background-color: rgba(0, 0, 0, 0);
     border-radius:var(--main-radius);
     /*padding-top:var(--main-padding);*/
-    max-width:1200px;
+    max-width:var(--content-container-max-width);
     display:flex;
     flex-direction: row;
     flex-wrap: wrap;
@@ -126,10 +129,9 @@ main{
   margin-bottom: 0;
   margin-top: 80px;
   margin-left:70px;
-  margin-right:20px;
+  margin-right:70px;
   font-size: 35px;
   max-width:400px;
-  text-align:left;
   color: rgb(0, 0, 0);
 }
 h1{
@@ -208,6 +210,7 @@ footer{
   min-height:var(--footer-min-height);
 
 }
+/*Line Separator*/
 hr{
   margin-bottom: 15px;
 }
@@ -223,18 +226,15 @@ hr{
     color: rgb(112, 112, 112);
     width: fit-content
 }
-
-@media only screen and (max-width: 850px){
+/*Small Window View*/
+@media only screen and (max-width: 780px){
   .container{
     grid-template-columns:1fr;
-    grid-template-rows: var(--nav-height) auto auto auto auto auto auto;
+    grid-template-rows: var(--nav-height) auto auto 400px;
     grid-template-areas:
       "nav"
       "sidebar"
       "main"
-      "content1"
-      "content2"
-      "content3"
       "footer";
   }
   #Profile-image{
@@ -247,17 +247,60 @@ hr{
     margin-bottom: 30px;
     margin-top: 30px;
   }
+  #title{
+    text-align: center;
+    place-self: center;
+    color: rgb(0, 0, 0);
+    padding:0px;
+    margin-bottom: 0;
+    margin-top: 80px;
+    margin-left:70px;
+    margin-right:70px;
+    font-size: 35px;
+    max-width:400px;
+    color: rgb(0, 0, 0);
+  }
   #Profile-bio{
     margin-bottom: 30px;
     margin-top: 80px;
-    margin-left:20px;
-    margin-right:20px;
+    margin-left:30px;
+    margin-right:30px;
     font-size: 15px;
     max-width:500px;
     text-align:left;
     place-self: center;
     color: rgb(0, 0, 0);
   }  
+  footer{
+  background-color: rgba(184, 177, 119, 0.059);
+  grid-area: footer;
+  padding-top:var(--main-padding);
+  min-height:var(--footer-min-height);
+
+  }
+}
+/*Mobile View (One Column)*/
+@media only screen and (max-width:535px){
+  .container{
+    grid-template-columns:minmax(0, 1fr) !important;
+    grid-template-rows: var(--nav-height) auto auto 400px;
+    grid-template-areas:
+      "nav"
+      "sidebar"
+      "main"
+      "footer";
+  }
+  #Profile-image{
+    --Profile-size:200px;
+    object-fit: cover;
+    width:var(--Profile-size);
+    height:var(--Profile-size);
+    border-width:0;
+    border-radius: 50%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+  }
 
 
+  
 }
